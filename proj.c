@@ -23,3 +23,41 @@ void add_element_list(Noeux** tete, int donné) {
         temp->suivant = n_noeux;
     }
 }
+void Trie_a_bulle_list(Noeux *tete, int screenWidth, int screenHeight) {
+    int perm;
+    Noeux *ptr;
+    Noeux *last = NULL;
+
+    if (tete == NULL || tete->suivant == NULL) {
+        return;
+    }
+
+    do {
+        perm = 0;
+        ptr = tete;
+
+        while (ptr->suivant != last) {
+            // Dessiner le contenu après chaque échange
+                BeginDrawing();
+                ClearBackground(RAYWHITE);
+                dessiner_list_chaine(tete, screenWidth, screenHeight);
+                EndDrawing();
+                // Attendre avant de continuer
+            double startTime = GetTime();
+            while (GetTime() - startTime < 2.0) { }
+
+            if (ptr->info > ptr->suivant->info) {
+                // Échanger les données des nœuds
+                int temp = ptr->info;
+                ptr->info = ptr->suivant->info;
+                ptr->suivant->info = temp;
+                perm = 1;
+            }
+
+           
+
+            ptr = ptr->suivant;
+        }
+        last = ptr;
+    } while (perm);
+}
