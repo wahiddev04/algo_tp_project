@@ -61,3 +61,32 @@ void Trie_a_bulle_list(Noeux *tete, int screenWidth, int screenHeight) {
         last = ptr;
     } while (perm);
 }
+
+int main() {
+    const int screenWidth = 800;
+    const int screenHeight = 600;
+
+    InitWindow(screenWidth, screenHeight, "Liste chaînée avec interface graphique Raylib");
+
+    Noeux *tete = NULL;
+    add_element_list(&tete, 6);
+    add_element_list(&tete, 4);
+    add_element_list(&tete, 9);
+    add_element_list(&tete, 1);
+    add_element_list(&tete, 5);
+
+    while (!WindowShouldClose()) {
+        
+        BeginDrawing();
+
+        ClearBackground(RAYWHITE);
+
+        Trie_a_bulle_list(tete, screenWidth, screenHeight);
+
+        dessiner_list_chaine(tete, screenWidth, screenHeight);
+
+        EndDrawing();
+    }
+
+    return 0;
+}
